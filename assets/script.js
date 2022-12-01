@@ -30,25 +30,23 @@ var myDay = [
     
 ]
 
-// gets data for the header date
 function getHeaderDate() {
     var currentHeaderDate = moment().format('dddd, MMMM Do');
     $("#currentDay").text(currentHeaderDate);
 }
 
-// saves data to localStorage
+//SAVES DATA TO A LOCAL STORAGE
 function saveReminders() {
     localStorage.setItem("myDay", JSON.stringify(myDay));
 }
 
-// sets any data in localStorage to the view
+
 function displayReminders() {
     myDay.forEach(function (_thisHour) {
         $(`#${_thisHour.id}`).val(_thisHour.reminder);
     })
 }
 
-// sets any existing localStorage data to the view if it exists
 function init() {
     var storedDay = JSON.parse(localStorage.getItem("myDay"));
 
@@ -60,25 +58,24 @@ function init() {
     displayReminders();
 }
 
-// loads header date
+//SETS THE CURRENT HEADER DATE
 getHeaderDate();
 
-// creates the visuals for the scheduler body
+
+//CREATES THE TEXT BLOCK IN THE PLANNER (not working come back to this)
 myDay.forEach(function(thisHour) {
-    // creates timeblocks row
     var hourRow = $("<form>").attr({
         "class": "row"
     });
     $(".container").append(hourRow);
 
-    // creates time field
     var hourField = $("<div>")
         .text(`${thisHour.hour}${thisHour.meridiem}`)
         .attr({
             "class": "hour"
     });
 
-    // creates schdeduler data
+
     var hourPlan = $("<div>")
         .attr({
             "class": "description"
@@ -100,7 +97,7 @@ myDay.forEach(function(thisHour) {
         })
     }
 
-    // creates save button
+//HERE IS THE SAVE BUTTON 
     var saveButton = $("<i class='save'></i>")
     var savePlan = $("<button>")
         .attr({
@@ -110,11 +107,10 @@ myDay.forEach(function(thisHour) {
     hourRow.append(hourField, hourPlan, savePlan);
 })
 
-// loads any existing localstorage data after components created
+//THIS IS FOR LOCAL DATA STORAGE IT LOAD AFTER THE FACT
 init();
 
-
-// saves data to be used in localStorage
+//THIS WILL SAVE THE DATA TO LOCAL STORAGE
 $(".saveBtn").on("click", function(event) {
     event.preventDefault();
     var saveIndex = $(this).siblings(".description").children(".future").attr("id");
