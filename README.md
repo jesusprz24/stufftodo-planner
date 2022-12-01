@@ -18,7 +18,10 @@ THEN the saved events persist
 
 # Screenshot:
 
+
+
 # Github Repository:
+https://github.com/jesusprz24/stufftodo-planner
 
 # Live URL:
-
+https://jesusprz24.github.io/stufftodo-planner/
